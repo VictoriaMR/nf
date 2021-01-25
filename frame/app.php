@@ -45,7 +45,7 @@ class App
             return Container::$_building[$abstract];
         }
 
-        $file = ROOT_PATH.strtr($abstract, '\\', '/').'.php';
+        $file = ROOT_PATH.strtr($abstract, ['\\', '/', 'App\\'=>'app/']).'.php';
         if (is_file($file)) {
 			require $file;
         } else {
