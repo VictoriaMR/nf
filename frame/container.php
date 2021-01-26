@@ -22,8 +22,9 @@ final class Container
 
     private function make($concrete)
     {
-    	if (isset(self::$_building[$concrete]))
+    	if (isset(self::$_building[$concrete])) {
     		return self::$_building[$concrete];
+        }
         return $this->build($concrete);;
     }
 

@@ -50,3 +50,23 @@ function isCli()
 {
     return stripos(php_sapi_name(), 'cli') !== false;
 }
+function assign($name, $value = null)
+{
+    return \frame\View::getInstance()->assign($name, $value);
+}
+function view($template = '')
+{
+    return \frame\View::getInstance()->display($template);
+}
+function url($url = '', $param = []) 
+{
+    return \Router::buildUrl($url, $param);
+}
+function staticUrl($url, $type = '')
+{
+    if ($type == '') {
+        return env('APP_DOMAIN') . $url;
+    } else {
+        return env('APP_DOMAIN') . $type . DS . $url . '.' . $type;
+    }
+}

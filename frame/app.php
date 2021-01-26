@@ -25,6 +25,9 @@ class App
     {
         //路由解析
         $info = Router::$_route;
+        //中间件
+        \App\Middleware\VerifyToken::handle($info);
+        //执行方法
         $class = 'App\\Controllers\\'.$info['class'].'\\'.$info['path'].'Controller';
         if (is_callable([self::autoload($class), $info['func']])) {
             call_user_func_array([self::autoload($class), $info['func']], []);
@@ -44,8 +47,13 @@ class App
         if (!empty(Container::$_building[$abstract])) {
             return Container::$_building[$abstract];
         }
-
-        $file = ROOT_PATH.strtr($abstract, ['\\'=>'/', 'App\\'=>'app/']).'.php';
+        $file = strtr($abstract, '/', '\\');
+        if (strpos($file, 'App') === 0) {
+            $file = lcfirst($file);
+        } else if (strpos($file, 'frame') !== false) {
+            $file = strtolower($file);
+        }
+        $file = ROOT_PATH.$file.'.php';
         if (is_file($file)) {
 			require $file;
         } else {

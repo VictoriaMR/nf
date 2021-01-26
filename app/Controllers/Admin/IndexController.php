@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Home;
+namespace App\Controllers\Admin;
 
 use App\Controllers\Controller;
 use frame\Html;

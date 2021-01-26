@@ -24,14 +24,35 @@ final class Router
 				return true;
 			}
 	        self::$_route['class'] = ucfirst(array_shift($pathInfo));
-			if (count($pathInfo) > 1) {
-		        self::$_route['func'] = lcfirst(array_pop($pathInfo));
-		       	self::$_route['path'] = ucfirst($pathInfo);
-			} else {
-		        self::$_route['path'] = 'Index';
-		        self::$_route['func'] = 'index';
-			}
+	        switch (count($pathInfo)) {
+	        	case 0:
+	        		self::$_route['path'] = 'Index';
+		        	self::$_route['func'] = 'index';
+	        		break;
+	        	case 1:
+	        		self::$_route['path'] = ucfirst(implode(DS, $pathInfo));
+		        	self::$_route['func'] = 'index';
+	        		break;
+	        	default:
+	        		$func = lcfirst(array_pop($pathInfo));
+	        		self::$_route['path'] = ucfirst(implode(DS, $pathInfo));
+	        		self::$_route['func'] = $func;
+	        		break;
+	        }
 			return true;
 		}
+	}
+
+	public static function buildUrl($url = '', $param = [])
+	{
+		if (empty($url)) {
+			$url = implode(DS, self::$_route);
+		} else {
+			$url = self::$_route['class'] . DS . $url;
+		}
+		if (!empty($param)) {
+			$url .= '?' . http_build_query($param);
+		}
+		return env('APP_DOMAIN').$url;
 	}
 }
