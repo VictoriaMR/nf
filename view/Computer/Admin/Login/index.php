@@ -18,7 +18,7 @@
 				<div class="formControls col-xs-8 col-xs-offset-3">
 					<input class="input-text size-L" type="text" placeholder="验证码" onblur="if(this.value==''){this.value='验证码:'}" onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
 					<img id="refresh" src="<?php echo url('login/loginCode');?>" onclick="document.getElementById('refresh').src='<?php echo url('login/loginCode');?>'">
-					<a href="javascript:;" onclick="document.getElementById('refresh').src='<?php echo url('login/loginCode');?>'">看不清，换一张</a>
+					<a href="javascript:;" onclick="document.getElementById('refresh').src='<?php echo url('login/loginCode');?>'">点击切换</a>
 				</div>
 			</div>
 			<div class="row cl">
