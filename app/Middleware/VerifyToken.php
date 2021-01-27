@@ -8,6 +8,7 @@ class VerifyToken
 {
     protected static $except = [
         'Admin/Login/index' => true,
+        'Admin/Login/login' => true,
         'Admin/Login/loginCode' => true,
     ];
 
@@ -23,6 +24,7 @@ class VerifyToken
         }
         //检查登录状态
         if (!empty($loginKey) && empty(Session::get($loginKey))) {
+            Session::set('admin_callback_url', $_SERVER['REQUEST_URI'].(!empty($_SERVER['QUERY_STRING']) ? '?'.$_SERVER['QUERY_STRING'] : ''));
             redirect(url('login'));
         }
         return true;

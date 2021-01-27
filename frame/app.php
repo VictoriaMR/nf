@@ -47,7 +47,7 @@ class App
         if (!empty(Container::$_building[$abstract])) {
             return Container::$_building[$abstract];
         }
-        $file = strtr($abstract, '/', '\\');
+        $file = strtr($abstract, '\\', DS);
         if (strpos($file, 'App') === 0) {
             $file = lcfirst($file);
         } else if (strpos($file, 'frame') !== false) {
@@ -55,7 +55,7 @@ class App
         }
         $file = ROOT_PATH.$file.'.php';
         if (is_file($file)) {
-			require $file;
+			require_once $file;
         } else {
 			exit($abstract.' was not exist!');
         }
