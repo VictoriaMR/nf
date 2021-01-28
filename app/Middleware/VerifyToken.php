@@ -7,9 +7,9 @@ use frame\Session;
 class VerifyToken
 {
     protected static $except = [
-        'Admin/Login/index' => true,
-        'Admin/Login/login' => true,
-        'Admin/Login/loginCode' => true,
+        'admin/login/index' => true,
+        'admin/login/login' => true,
+        'admin/login/loginCode' => true,
     ];
 
     public static function handle($request)

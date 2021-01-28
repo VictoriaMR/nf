@@ -28,7 +28,7 @@ class App
         //中间件
         \App\Middleware\VerifyToken::handle($info);
         //执行方法
-        $class = 'App\\Controllers\\'.$info['class'].'\\'.$info['path'].'Controller';
+        $class = 'App\\Controllers\\'.ucfirst($info['class']).'\\'.ucfirst($info['path']).'Controller';
         if (is_callable([self::autoload($class), $info['func']])) {
             call_user_func_array([self::autoload($class), $info['func']], []);
         }

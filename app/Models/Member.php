@@ -6,6 +6,11 @@ use App\Models\Base as BaseModel;
 
 class Member extends BaseModel
 {
+    const INFO_CACHE_TIMEOUT = 3600 *24;
+    const TYPE_MEMBER_CUSTOMER = 1;
+    const TYPE_MEMBER_PROXY = 3;
+    const TYPE_MEMBER_ADMIN = 5;
+    
     //表名
     protected $_table = 'member';
     //主键
@@ -19,7 +24,7 @@ class Member extends BaseModel
 
     public function getInfoByMobile($mobile)
     {
-    	return $this->getInfoByWhere(['mobile' => $mobile])->find();
+    	return $this->getInfoByWhere(['mobile' => $mobile]);
     }
 
     public function getInfo($userId)

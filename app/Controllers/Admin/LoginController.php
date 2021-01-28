@@ -12,6 +12,7 @@ class LoginController extends Controller
 	{	
 		Html::addCss();
 		Html::addJs();
+		Session::set('admin', []);
 		return view();
 	}
 
@@ -40,22 +41,18 @@ class LoginController extends Controller
 		$memberService = make('App/Services/Admin/MemberService');
 		$result = $memberService->login($phone, $password, $memberService::constant('TYPE_MEMBER_ADMIN'));
 
-		dd($result);
-
 		if ($result) {
-			$data[] = [
-	            'user_id' => (int) \frame\Session::get('admin_mem_id'),
-	            'path' => implode('/', \Router::$_route),
-	            'param' => json_encode(input(), JSON_UNESCAPED_UNICODE),
-	            'ip' => getIp(),
-	            'create_at' => time(),
-	        ];
 
-	        $logService = \App::make('App\Services\LogService');
-	        $logService->handleLog($data);
-			$this->result(200, ['url' => url('admin')], ['message' => '登录成功!']);
+	        $logService = \App::make('App\Services\Logger\AdminLogService');
+			$data = [
+	            'mem_id' => Session::get('admin_mem_id'),
+	            'remark' => '登录管理后台',
+	            'type_id' => $logService::constant('TYPE_ID_LOGIN'),
+	        ];
+	        $logService->addLog($data);
+			$this->result(200, ['url' => url('index')], ['message' => '登录成功!']);
 		} else {
-			$this->result(10000, $result, ['message' => '账号不匹配!']);
+			$this->result(10000, $result, ['message' => '账号或者密码不匹配!']);
 		}
 	}
 }

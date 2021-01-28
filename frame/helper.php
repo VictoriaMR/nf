@@ -17,8 +17,11 @@ function isAjax()
 {
     return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 }
-function isMobile()
+function isMobile($mobile = '')
 {
+    if ($mobile != '') {
+        return preg_match('/^1[34578]\d{9}$/', $mobile);
+    }
     if (isset($_SERVER['HTTP_VIA']) && stristr($_SERVER['HTTP_VIA'], 'wap')) {
         return true;
     }
@@ -37,6 +40,10 @@ function config($name = '')
 {
     if (empty($name)) return $GLOBALS;
     return $GLOBALS[$name] ?? [];
+}
+function dbconfig($db = 'default')
+{
+    return config('database')[$db] ?? [];
 }
 function env($name = '', $replace = '')
 {
@@ -87,4 +94,42 @@ function iget($name = '', $default = null)
         return  $_GET[$name];
     }
     return $default;
+}
+function input()
+{
+    return array_merge($_GET, $_POST);
+}
+function isJson($string) 
+{ 
+    if (is_array($string)) return false;
+    $string = json_decode($string, true); 
+    return json_last_error() == JSON_ERROR_NONE ? $string : false;
+}
+function redis($db = 0) 
+{
+    return \frame\Redis::getInstance($db);
+}
+function siteUrl($url = '')
+{
+    return env('APP_DOMAIN').$url;
+}
+function mediaUrl($url = '', $type='')
+{
+    if (strpos($url, 'http') === false && strpos($url, 'https') === false) {
+        return env('APP_DOMAIN').'file_center'.DS.$url;
+    }
+    return $url;
+}
+function getIp()
+{
+    if (!empty($_SERVER['HTTP_CLIENT_IP']) && strcasecmp($_SERVER['HTTP_CLIENT_IP'], 'unknown')) {
+        return $_SERVER['HTTP_CLIENT_IP'];
+    }
+    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR']) && strcasecmp($_SERVER['HTTP_X_FORWARDED_FOR'], 'unknown')) {
+        return $_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+    if (!empty($_SERVER['REMOTE_ADDR']) && strcasecmp($_SERVER['REMOTE_ADDR'], 'unknown')) {
+        return $_SERVER['REMOTE_ADDR'];
+    }
+    return '';
 }

@@ -12,7 +12,7 @@ class Base
     protected function getInstance()
     {
         if (is_null($this->_instance)) {
-            $this->_instance = new \frame\Query($this->_table);
+            $this->_instance = new \frame\Query($this->_connect, $this->_table);
         }
         return $this->_instance;
     }
@@ -52,12 +52,12 @@ class Base
 
     public function getCount(array $where = []) 
     {
-        return $this->getInstance()->wehere($where)->count();
+        return $this->getInstance()->where($where)->count();
     }
 
     public function getInfoByWhere(array $where = [], array $fields = [])
     {
-        return $this->getInstance()->wehere($where)->field($fields)->get();
+        return $this->getInstance()->where($where)->field($fields)->find();
     }
 
     public function getPaginationList($total = 0, $list = [], $page = 1, $pagesize = 10)

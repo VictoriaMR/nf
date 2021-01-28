@@ -4,9 +4,8 @@ namespace frame;
 
 class Connection
 {
-	private $conn = null;
+	private $conn;
 	private static $_instance = [];
-	private static $_connect = null;
 	private function __construct() {}
 	private function __clone() {}
 
@@ -14,7 +13,7 @@ class Connection
 	{
 		$conn =  new \mysqli($host, $username, $password, $database, $port);
 		if($conn->connect_error){
-			exit('Connect Error ('.$conn->connect_errno.') '.$conn->connect_error);
+			throw new \Exception('Connect Error ('.$conn->connect_errno.') '.$conn->connect_error, 1);
 		}
 		$conn->set_charset($charset);
 		return $conn;
@@ -30,9 +29,9 @@ class Connection
 		if (is_null($database)) $database = env('DB_DATABASE');
 
 		if (empty(self::$_instance[$db][$database])) {
-			$config = DbConfig($db);
+			$config = dbconfig($db);
 			if (empty($config)) {
-				exit('Connect Error： Cannot found '.$db.' in config/database');
+				throw new \Exception('Connect Error： Cannot found '.$db.' in config/database', 1);
 			}
 			self::$_instance[$db][$database] = self::connect(
 				$config['db_host'] ?? '', 

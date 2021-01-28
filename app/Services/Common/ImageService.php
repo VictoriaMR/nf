@@ -14,7 +14,7 @@ class ImageService
     	$bgcolor = imagecolorallocate($image, 255, 255, 255);
     	imagefill($image, 0, 0, $bgcolor);
 
-    	$fontfile = ROOT_PATH . 'public' . DS . 'font' . DS . 'simsunb.ttf';
+    	$fontfile = ROOT_PATH . 'public' . DS . 'font' . DS . 'simhei.ttf';
     	// 生成随机码
     	$len = strlen($code);
     	for ($i = 0; $i < $len; $i++) {
