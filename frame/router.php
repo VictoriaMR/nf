@@ -8,8 +8,8 @@ final class Router
 		$pathInfo = trim($_SERVER['REQUEST_URI'], DS);
 		if (empty($pathInfo)) {
 			self::$_route = [
-				'class' => 'home',
-				'path' => 'index',
+				'class' => 'Home',
+				'path' => 'Index',
 				'func' => 'index',
 			];
 			return true;
@@ -17,16 +17,16 @@ final class Router
 			$pathInfo = explode(DS, explode('?', $pathInfo)[0]);
 			if (empty($pathInfo[0])) {
 				self::$_route = [
-					'class' => 'home',
-					'path' => 'index',
+					'class' => 'Home',
+					'path' => 'Index',
 					'func' => 'index',
 				];
 				return true;
 			}
-	        self::$_route['class'] = strtolower(array_shift($pathInfo));
+	        self::$_route['class'] = ucfirst(array_shift($pathInfo));
 	        switch (count($pathInfo)) {
 	        	case 0:
-	        		self::$_route['path'] = 'index';
+	        		self::$_route['path'] = 'Index';
 		        	self::$_route['func'] = 'index';
 	        		break;
 	        	case 1:
@@ -35,8 +35,8 @@ final class Router
 	        		break;
 	        	default:
 	        		$func = array_pop($pathInfo);
-	        		self::$_route['path'] = lcfirst(implode(DS, $pathInfo));
-	        		self::$_route['func'] = strtolower($func);
+	        		self::$_route['path'] = ucfirst(implode(DS, $pathInfo));
+	        		self::$_route['func'] = lcfirst($func);
 	        		break;
 	        }
 			return true;

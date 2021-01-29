@@ -13,6 +13,7 @@
     <?php foreach (\frame\Html::getCss() as $value) { ?>
     <link rel="stylesheet" type="text/css" href="<?php echo $value;?>" />
     <?php }?>
+    <script type="text/javascript" src="<?php echo staticUrl('Common/jquery.min', 'js');?>"></script>
     <?php foreach (\frame\Html::getJs() as $value) { ?>
     <script type="text/javascript" src="<?php echo $value;?>"></script>
     <?php }?>
