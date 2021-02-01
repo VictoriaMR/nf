@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -18,4 +16,3 @@
     <script type="text/javascript" src="<?php echo $value;?>"></script>
     <?php }?>
 </head>
-<body>

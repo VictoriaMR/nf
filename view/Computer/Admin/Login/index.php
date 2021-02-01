@@ -1,4 +1,3 @@
-<?php $this->load('Common/header');?>
 <div class="loginWraper">
 	<div id="loginform">
 		<form class="form form-horizontal">
@@ -42,4 +41,3 @@ $(function(){
 	LOGIN.init();
 });
 </script>
-<?php $this->load('Common/footer');?>

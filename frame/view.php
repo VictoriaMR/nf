@@ -37,10 +37,7 @@ class View
         if (empty($template)) {
             $template = implode(DS, $_route);
         } else {
-            if (false === strrpos($template, DS)) {
-                $_route['func'] = $template;
-                $template = implode(DS, $_route);
-            } else {
+            if (false !== strrpos($template, DS)) {
                 $template = $_route['class'] . DS . $template;
             }
         }

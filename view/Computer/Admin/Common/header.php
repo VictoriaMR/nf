@@ -1,5 +1,3 @@
-<!DOCTYPE HTML>
-<html>
 <head>
     <meta charset="utf-8">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
@@ -18,7 +16,3 @@
     <script type="text/javascript" src="<?php echo $value;?>"></script>
     <?php }?>
 </head>
-<body>
-<script type="text/javascript">
-var URI = "<?php echo env('APP_DOMAIN').'Admin/';?>";
-</script>
