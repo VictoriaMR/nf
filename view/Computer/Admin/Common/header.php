@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="stylesheet" type="text/css" href="<?php echo staticUrl('Common/Hui/hui.min', 'css');?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo staticUrl('Common/Hui/iconfont.min', 'css');?>" />
-    <link rel="shortcut icon" href="<?php echo env('APP_DOMAIN');?>favicon.ico" />
+    <link rel="shortcut icon" href="<?php echo APP_DOMAIN;?>favicon.ico" />
     <?php foreach (\frame\Html::getCss() as $value) { ?>
     <link rel="stylesheet" type="text/css" href="<?php echo $value;?>" />
     <?php }?>

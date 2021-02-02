@@ -13,18 +13,16 @@ class Html
         if (env('APP_VIEW_MATCH')) {
             $matchPath = (isMobile() ? 'Mobile' : 'Computer') . DS;
         }
-        $_route = \Router::$_route;
         if (empty($name)) {
-            $name = implode(DS, $_route);
+            $_route = \Router::$_route;
+            $name = $_route['path'] . DS . $_route['func'];
         } else {
             if (false === strrpos($name, DS)) {
-                $_route['func'] = $name;
-                $name = implode(DS, $_route);
-            } else {
-                $name = $_route['class'] . DS . $name;
+                $_route = \Router::$_route;
+                $name = $_route['path'] . DS . $_route['func'];
             }
         }
-        self::$_CSS[] = env('APP_DOMAIN') . 'css' . DS . $matchPath . $name . '.css';
+        self::$_CSS[] = APP_DOMAIN . 'css' . DS . $matchPath . $name . '.css';
         return true;
 	}
 
@@ -34,18 +32,16 @@ class Html
         if (env('APP_VIEW_MATCH')) {
             $matchPath = (isMobile() ? 'Mobile' : 'Computer') . DS;
         }
-        $_route = \Router::$_route;
         if (empty($name)) {
-            $name = implode(DS, $_route);
+            $_route = \Router::$_route;
+            $name = $_route['path'] . DS . $_route['func'];
         } else {
             if (false === strrpos($name, DS)) {
-                $_route['func'] = $name;
-                $name = implode(DS, $_route);
-            } else {
-                $name = $_route['class'] . DS . $name;
+                $_route = \Router::$_route;
+                $name = $_route['path'] . DS . $_route['func'];
             }
         }
-        self::$_JS[] = env('APP_DOMAIN') . 'js' . DS . $matchPath . $name . '.js';
+        self::$_JS[] = APP_DOMAIN . 'js' . DS . $matchPath . $name . '.js';
         return true;
 	}
 

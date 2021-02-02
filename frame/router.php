@@ -8,7 +8,7 @@ final class Router
 		$pathInfo = trim($_SERVER['REQUEST_URI'], DS);
 		if (empty($pathInfo)) {
 			self::$_route = [
-				'class' => 'Home',
+				'class' => APP_TEMPLATE_TYPE,
 				'path' => 'Index',
 				'func' => 'index',
 			];
@@ -17,7 +17,7 @@ final class Router
 			$pathInfo = explode(DS, explode('?', $pathInfo)[0]);
 			if (empty($pathInfo[0])) {
 				self::$_route = [
-					'class' => 'Home',
+					'class' => APP_TEMPLATE_TYPE,
 					'path' => 'Index',
 					'func' => 'index',
 				];
@@ -53,6 +53,6 @@ final class Router
 		if (!empty($param)) {
 			$url .= '?' . http_build_query($param);
 		}
-		return env('APP_DOMAIN').$url;
+		return APP_DOMAIN.$url;
 	}
 }

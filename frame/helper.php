@@ -75,9 +75,9 @@ function url($url = '', $param = [])
 function staticUrl($url, $type = '')
 {
     if ($type == '') {
-        return env('APP_DOMAIN') . $url;
+        return APP_DOMAIN . $url;
     } else {
-        return env('APP_DOMAIN') . $type . DS . $url . '.' . $type;
+        return APP_DOMAIN . $type . DS . $url . '.' . $type;
     }
 }
 function ipost($name = '', $default = null) 
@@ -112,12 +112,12 @@ function redis($db = 0)
 }
 function siteUrl($url = '')
 {
-    return env('APP_DOMAIN').$url;
+    return APP_DOMAIN.$url;
 }
 function mediaUrl($url = '', $type='')
 {
     if (strpos($url, 'http') === false && strpos($url, 'https') === false) {
-        return env('APP_DOMAIN').'file_center'.DS.$url;
+        return APP_DOMAIN.'file_center'.DS.$url;
     }
     return $url;
 }

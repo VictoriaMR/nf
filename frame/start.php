@@ -16,7 +16,6 @@ if (is_file(ROOT_PATH . 'vendor/autoload.php')) {
 if (isCli()) {
 	App::init();
 } else {
-	header("Connection: close");
 	@session_start();
 	App::run()->send();
 }
