@@ -32,7 +32,7 @@ class App
         if (is_callable([self::autoload($class), $info['func']])) {
             call_user_func_array([self::autoload($class), $info['func']], []);
         }
-        include ROOT_PATH.'view'.DS.'layout.php';
+        // include ROOT_PATH.'view'.DS.'layout.php';
         exit();
     }
 
@@ -62,8 +62,6 @@ class App
         $file = ROOT_PATH.$file.'.php';
         if (is_file($file)) {
 			require_once $file;
-        } else {
-			exit($abstract.' was not exist!');
         }
 
 		return Container::getInstance()->autoload($abstract);

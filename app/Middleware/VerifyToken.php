@@ -14,6 +14,7 @@ class VerifyToken
 
     public static function handle($request)
     {
+        return;
         if (self::inExceptArray(implode(DS, $request))) {
             return true;
         }

@@ -65,7 +65,6 @@ function assign($name, $value = null)
 }
 function view($template = '')
 {
-    return;
     return \frame\View::getInstance()->display($template);
 }
 function url($url = '', $param = []) 

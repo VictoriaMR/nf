@@ -9,8 +9,19 @@ class IndexController extends Controller
 {
 	public function index()
 	{	
-		Html::addCss();
-		Html::addJs();
-		return view();
+		view();
+	}
+
+	public function register()
+	{
+		$post = $_POST;
+		dd($post);
+	}
+
+	public function registerInfo()
+	{
+		header("Content-type: application/json; charset=utf-8");
+		echo json_encode(['challenge' => 'l2uezcWQMgtEr67ViwnRXC3Ob9qEHUP3Ox+fE+zWw60=', 'id' => '+asLAAAAAAAAAA==']);
+		exit();
 	}
 }

@@ -4,6 +4,7 @@ require ROOT_PATH.'frame/app.php';
 require ROOT_PATH.'frame/router.php';
 require ROOT_PATH.'frame/container.php';
 require ROOT_PATH.'frame/helper.php';
+require ROOT_PATH.'src/WebAuthn.php';
 if (is_file(ROOT_PATH . 'frame/env.php')) {
 	require ROOT_PATH . 'frame/env.php';
 }
